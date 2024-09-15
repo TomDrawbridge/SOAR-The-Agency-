@@ -6,15 +6,16 @@ import {
   PlasmicRootProvider,
 } from "@plasmicapp/loader-nextjs";
 import type { GetStaticPaths, GetStaticProps } from "next";
-
 import Error from "next/error";
 import { useRouter } from "next/router";
 import { PLASMIC } from "@/plasmic-init";
 
-export default function PlasmicLoaderPage(props: {
+interface PlasmicLoaderPageProps {
   plasmicData?: ComponentRenderData;
-  queryCache?: Record<string, any>;
-}) {
+  queryCache?: Record<string, unknown>;
+}
+
+export default function PlasmicLoaderPage(props: PlasmicLoaderPageProps) {
   const { plasmicData, queryCache } = props;
   const router = useRouter();
   if (!plasmicData || plasmicData.entryCompMetas.length === 0) {
